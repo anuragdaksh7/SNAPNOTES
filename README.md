@@ -13,4 +13,12 @@
 - Delete note
 
 ## Installation Guide
-- git clone
+- git clone https://github.com/anuragdaksh7/SNAPNOTES.git
+### for client
+- cd client
+- npm install
+- npm start
+### for server
+- cd server
+- npm install
+- npm run dev/ node app.js
