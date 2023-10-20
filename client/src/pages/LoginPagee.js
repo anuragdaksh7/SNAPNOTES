@@ -1,8 +1,12 @@
 import { useState } from "react"
+import axios from "axios";
+import { useNavigate  } from 'react-router-dom';
 
+const BASE = "http://localhost:5000/";
 
 
 export const LoginPage = () => {
+    const navigate = useNavigate();
 
     const inputStyle = "outline-none w-full h-8 text-lg text-gray-700 border-gray-300 ps-1  border-b-2 font-semibold mb-2 text-gray-600  bg-gray-200 mb-4";
     // console.log(location.pathname);
@@ -10,9 +14,25 @@ export const LoginPage = () => {
         
     // }
     const [vis, setVis] = useState("password");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const handleSubmit = (event) => {
         
-        event.preventDefault()
+        event.preventDefault();
+        const data = {
+            email: email,
+            password: password
+        }
+        axios.post(BASE+"login",data,{ withCredentials: true })
+        .then(response => {
+            if (response.data === "done"){
+                navigate('/home');
+            }
+        }).catch((error) => {
+            console.error('Error posting data', error);
+          // Handle errors
+        });
+
     }
     return (
         <div className="flex justify-center ">
@@ -21,12 +41,12 @@ export const LoginPage = () => {
                 <form >
                     <div>
                         <p className="text-gray-800 text-2xl font-bold mb-4">Sign in to SnapNotes</p>
-                        <input className={inputStyle} type="email" placeholder="Email..." name="email"  />
+                        <input className={inputStyle} value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Email..." name="email"  />
                     </div>
                     
                     <div>
                         <span className="flex">
-                        <input className={inputStyle} type={ vis } placeholder="Password..." name="password"  />
+                        <input className={inputStyle} value={password} onChange={(e)=>setPassword(e.target.value)} type={ vis } placeholder="Password..." name="password"  />
                         <div className="inline " onClick={ (e)=>{
                             (vis==="password")?setVis("text"):setVis("password")
                         } }><span className="flex select-none justify-center material-symbols-outlined cursor-pointer">{ (vis==="password")?"visibility":"visibility_off" }</span></div>
