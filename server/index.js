@@ -6,6 +6,7 @@ const db = require("./databaseConnection.js");
 const Register = require("./registers.js");
 var cors = require('cors')
 const { createHash } = require('crypto');
+const auth = require("./auth.js");
 
 
 function hash(string) {
@@ -14,7 +15,7 @@ function hash(string) {
 
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000'],
     credentials: true, // Allow cookies
 };
 
@@ -54,12 +55,15 @@ app.post("/login", async(req, res) => {
             "jwt",
             token,
             {
-                secure: true,
-                sameSite: 'none',
-                expires: new Date(Date.now()+30000),
-                httpOnly: true,
+                // secure: true,
+                // sameSite: 'none',
+                // expires: new Date(Date.now()+30000),
+                // httpOnly: true,
                 // secure: true
-            }
+                withCredentials: true,
+                httpOnly: false,
+            },
+            { domain: 'http://localhost:3000' }
         );
         // console.log(`cookie: ${req.cookies.jwt}`);
         if (userEmail.password === password){
@@ -92,9 +96,12 @@ app.post("/signup", async (req, res) =>{
             "jwt",
             token, 
             {
-                expires: new Date(Date.now()+30000),
-                httpOnly: true
-            }
+                // expires: new Date(Date.now()+30000),
+                // httpOnly: true
+                withCredentials: true,
+                httpOnly: false,
+            },
+            { domain: 'http://localhost:3000' }
         );
         // console.log(userCache);
         
@@ -105,4 +112,21 @@ app.post("/signup", async (req, res) =>{
         console.log(error);
         res.status(400).send(error);
     }
+});
+
+app.get("/getUser",auth,(req, res) => {
+    // console.log(req.cookies.jwt);
+    console.log(req.user.userName);
+    // res.cookie(
+    //     "user",
+    //     req.user.userName, 
+    //     {
+    //         // expires: new Date(Date.now()+30000),
+    //         // httpOnly: true
+    //         withCredentials: true,
+    //         httpOnly: false,
+    //     },
+    //     { domain: 'http://localhost:3000' }
+    // )
+    res.send(req.user.userName).status(200)
 });

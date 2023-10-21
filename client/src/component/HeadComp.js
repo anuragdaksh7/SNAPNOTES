@@ -5,7 +5,7 @@ export const Headerr = () => {
             <a href="/"><p className=" text-2xl">SnapNotes</p></a>
             <div className="flex justify-between">
                 <a className="mx-2" href="https://github.com/anuragdaksh7/SNAPNOTES"><i className="fa fa-github"></i></a>
-                <a className="mx-2 mr-0" href="/about"><p className="">About</p></a>
+                <a className="mx-2 mr-0" href="/about"><p className="text-gray-900 hover:text-blue-800 duration-300">About</p></a>
             </div>
             {/* <a href="/aboutZ"><p className="">About</p></a> */}
         </nav>

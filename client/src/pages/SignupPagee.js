@@ -46,7 +46,7 @@ export const SignUp = () => {
     }
     return (
         <div className="flex justify-center ">
-            <div className="shadow-gray-200 mt-60 bg-gray-200 shadow-md border-black px-4 sm:px-16 py-6 rounded-xl">
+            <div className="shadow-gray-200 mt-40 bg-gray-200 shadow-md border-black px-4 sm:px-16 py-6 rounded-xl">
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
                 <form >
                     <div>

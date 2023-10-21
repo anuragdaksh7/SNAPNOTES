@@ -26,6 +26,7 @@ export const LoginPage = () => {
         axios.post(BASE+"login",data,{ withCredentials: true })
         .then(response => {
             if (response.data === "done"){
+                // console.log(document.cookie)
                 navigate('/home');
             }
         }).catch((error) => {
@@ -36,7 +37,7 @@ export const LoginPage = () => {
     }
     return (
         <div className="flex justify-center ">
-            <div className="shadow-gray-200 mt-60 bg-gray-200 shadow-md border-black px-4 sm:px-8 py-4 rounded-xl">
+            <div className="shadow-gray-200 mt-40 bg-gray-200 shadow-md border-black px-4 sm:px-8 py-4 rounded-xl">
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
                 <form >
                     <div>
