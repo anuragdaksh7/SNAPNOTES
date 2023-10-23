@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 
 app.post("/login", async(req, res) => {
-    console.log(req.body);
+    // console.log(req .body);
     // console.log(req.body.email);
     try {
         
