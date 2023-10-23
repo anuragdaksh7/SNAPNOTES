@@ -4,6 +4,7 @@ import { SignUp } from "./pages/SignupPagee";
 import { Home } from "./pages/Home";
 import { Headerr } from "./component/HeadComp";
 import { LandingPage } from "./pages/LandingPage";
+import { NoteConstruct } from "./pages/CreateNote";
 
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/createnote" element={<NoteConstruct />} />
         </Routes> 
       </BrowserRouter>
     </>

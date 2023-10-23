@@ -4,9 +4,11 @@ const jwt = require("jsonwebtoken");
 const CookieParser = require("cookie-parser");
 const db = require("./databaseConnection.js");
 const Register = require("./registers.js");
+const notes = require("./notes.js");
 var cors = require('cors')
 const { createHash } = require('crypto');
 const auth = require("./auth.js");
+var multer = require('multer');
 
 
 function hash(string) {
@@ -24,10 +26,21 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(CookieParser());
+app.use(express.json({ limit: '10mb' }));
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+
+var upload = multer({ storage: storage });
 
 
-
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT || 5000, ()=>{
     console.log('listening on port '+process.env.PORT);
 })
 
@@ -40,8 +53,6 @@ app.get('/', (req, res) => {
 
 
 app.post("/login", async(req, res) => {
-    // console.log(req .body);
-    // console.log(req.body.email);
     try {
         
         const email = req.body.email;
@@ -55,17 +66,11 @@ app.post("/login", async(req, res) => {
             "jwt",
             token,
             {
-                // secure: true,
-                // sameSite: 'none',
-                // expires: new Date(Date.now()+30000),
-                // httpOnly: true,
-                // secure: true
                 withCredentials: true,
                 httpOnly: false,
             },
             { domain: 'http://localhost:3000' }
         );
-        // console.log(`cookie: ${req.cookies.jwt}`);
         if (userEmail.password === password){
             res.send("done").status(201);
         } else {
@@ -80,7 +85,6 @@ app.post("/login", async(req, res) => {
 
 
 app.post("/signup", async (req, res) =>{
-    // console.log(req.body)
     try {
         
         
@@ -89,21 +93,16 @@ app.post("/signup", async (req, res) =>{
             email: req.body.email,
             password: hash(req.body.password),
         });
-
         const token = await register.generateAuthToken();
-        // console.log(token);
         res.cookie(
             "jwt",
             token, 
             {
-                // expires: new Date(Date.now()+30000),
-                // httpOnly: true
                 withCredentials: true,
                 httpOnly: false,
             },
             { domain: 'http://localhost:3000' }
         );
-        // console.log(userCache);
         
         const registered = await register.save();
         res.send("done").status(201);
@@ -115,18 +114,36 @@ app.post("/signup", async (req, res) =>{
 });
 
 app.get("/getUser",auth,(req, res) => {
-    // console.log(req.cookies.jwt);
-    console.log(req.user.userName);
-    // res.cookie(
-    //     "user",
-    //     req.user.userName, 
-    //     {
-    //         // expires: new Date(Date.now()+30000),
-    //         // httpOnly: true
-    //         withCredentials: true,
-    //         httpOnly: false,
-    //     },
-    //     { domain: 'http://localhost:3000' }
-    // )
     res.send(req.user.userName).status(200)
 });
+
+app.post('/postit', auth ,(req, res) => {
+    var obj = {
+        userName: req.user.userName,
+        title: req.body.title,
+        note: req.body.note,
+        img: {
+            data: req.body.img,
+            contentType: 'image/png'
+        },
+        date: req.body.date
+    }
+    
+    imgSchema.create(obj)
+    .then ((err, item) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.status(200).send("Posted");
+        }
+    });
+    res.send("Posted");
+});
+
+app.get("/getSkeletons", auth, (req, res) => {
+    const userName = req.user.userName;
+    const note =  notes.find({ userName: userName });
+    console.log(note);
+    res.send(200);
+})
