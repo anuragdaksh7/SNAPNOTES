@@ -13,11 +13,15 @@ export const LoginPage = () => {
     // if (location.pathname === "/login"){
         
     // }
+
     const [vis, setVis] = useState("password");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [valid, setValid] = useState(true);
+    const tmp = "text-xs text-red-600 hidden";
+    const tmp2 = "text-xs text-red-600 flex";
     const handleSubmit = (event) => {
-        
+        console.log(valid)
         event.preventDefault();
         const data = {
             email: email,
@@ -29,8 +33,10 @@ export const LoginPage = () => {
                 // console.log(document.cookie)
                 navigate('/home');
             }
+            setValid(false);
         }).catch((error) => {
-            console.error('Error posting data', error);
+            // console.error('Error posting data', error);
+            setValid(false);
           // Handle errors
         });
 
@@ -55,6 +61,7 @@ export const LoginPage = () => {
                     </div>
                     <button className="mt-2 w-full bg-gray-700 py-2 rounded-xl text-white font-bold" onClick={handleSubmit} type="submit">LogIn</button>
                     <p className="text-xs mt-2 font-extralight">New to SnapNotes? <a className="text-blue-700" href="/signup">SignUp</a></p>
+                    <p className={(valid)?tmp:tmp2}>Invalid credentials</p>
                 </form>
             </div>
         </div>
