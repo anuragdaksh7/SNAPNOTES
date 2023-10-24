@@ -22,3 +22,10 @@
 - cd server
 - npm install
 - npm run dev/ node app.js
+### Environment Variables
+- #### Frontend
+- - REACT_APP_BASE_URL = "http://localhost:5000/"
+- #### Backend
+- - PORT = 5000
+- - API_KEY = "mongodb connection string"
+- - SECRET_KEY = "your secret key for JWT"
