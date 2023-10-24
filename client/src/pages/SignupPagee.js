@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
 
-const BASE = "http://localhost:5000/";
+const BASE = process.env.REACT_APP_BASE_URL;
 
 export const SignUp = () => {
     const navigate = useNavigate();

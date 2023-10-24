@@ -2,10 +2,11 @@ import { useState } from "react"
 import axios from "axios";
 import { useNavigate  } from 'react-router-dom';
 
-const BASE = "http://localhost:5000/";
+const BASE = process.env.REACT_APP_BASE_URL;
 
 
 export const LoginPage = () => {
+    // console.log(process.env.REACT_APP_BASE_URL)
     const navigate = useNavigate();
 
     const inputStyle = "outline-none w-full h-8 text-lg text-gray-700 border-gray-300 ps-1  border-b-2 font-semibold mb-2 text-gray-600  bg-gray-200 mb-4";

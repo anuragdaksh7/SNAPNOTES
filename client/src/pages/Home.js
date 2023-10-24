@@ -6,7 +6,7 @@ import { Note } from "../component/NoteCard";
 
 
 export const Home = () => {
-    const BASE_URL = "http://localhost:5000/";
+    const BASE_URL = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate()
 
     const [userName, setUserName] = useState("userName");
@@ -23,7 +23,7 @@ export const Home = () => {
             setJsx(response.data);
         }).catch((error) => {
         });
-    }, []);
+    }, [BASE_URL]);
 
     axios.get(BASE_URL + "getUser", { withCredentials: true })
         .then(response => {

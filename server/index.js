@@ -22,11 +22,10 @@ const corsOptions = {
 };
 
 const app = express();
+app.use(express.json({ limit: '100mb' }));
 app.use(cors(corsOptions));
-app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(CookieParser());
-app.use(express.json({ limit: '100mb' }));
 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -137,20 +136,34 @@ app.post('/postit', auth ,(req, res) => {
 
 app.get("/getSkeletons", auth,async (req, res) => {
     const userName = req.user.userName;
-    const note = await notes.find({ userName: userName });
+    const note = await notes.find({ userName: userName },{"_id":1, "title":1});
     // console.log(note[0].title);
     var arr = Array();
     for (const notee of note){
         const tmp = [notee._id, notee.title];
         arr.push(tmp);
     }
+    arr = arr.reverse();
     res.json(arr);
 });
 
 app.get("/api/v1/getNote/:noteId", auth, async (req, res) =>{
     // console.log(req.params.noteId);
     const noteId = req.params.noteId;
-    const note = await notes.find({ _id : noteId });
+    var note = await notes.find({ _id : noteId });
+    var note = note[0];
     // console.log(note);
-    res.send(note).status(200);
+    const arr = [note.img.data, note.note, note.date];
+    res.send(arr).status(200);
+});
+
+app.delete("/api/v1/deleteNote/:noteId", auth, async (req, res) =>{
+    const noteId = req.params.noteId;
+    var note = await notes.find({ _id : noteId });
+    var note = note[0];
+    // console.log(req.user.userName, note.userName);
+    if (req.user.userName === note.userName){
+        await notes.deleteOne({ _id : noteId });
+        res.send("deleted!!");
+    }
 });
