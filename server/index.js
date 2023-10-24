@@ -26,7 +26,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(CookieParser());
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '100mb' }));
 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -39,18 +39,13 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-
 app.listen(process.env.PORT || 5000, ()=>{
     console.log('listening on port '+process.env.PORT);
-})
-
-
+});
 
 app.get('/', (req, res) => {
     res.send("hello").status(200);
-})
-
-
+});
 
 app.post("/login", async(req, res) => {
     try {
@@ -81,8 +76,6 @@ app.post("/login", async(req, res) => {
         res.status(400).send(error);
     }
 });
-
-
 
 app.post("/signup", async (req, res) =>{
     try {
@@ -118,6 +111,7 @@ app.get("/getUser",auth,(req, res) => {
 });
 
 app.post('/postit', auth ,(req, res) => {
+    // console.log(req.body)
     var obj = {
         userName: req.user.userName,
         title: req.body.title,
@@ -129,7 +123,7 @@ app.post('/postit', auth ,(req, res) => {
         date: req.body.date
     }
     
-    imgSchema.create(obj)
+    notes.create(obj)
     .then ((err, item) => {
         if (err) {
             console.log(err);
@@ -141,9 +135,22 @@ app.post('/postit', auth ,(req, res) => {
     res.send("Posted");
 });
 
-app.get("/getSkeletons", auth, (req, res) => {
+app.get("/getSkeletons", auth,async (req, res) => {
     const userName = req.user.userName;
-    const note =  notes.find({ userName: userName });
-    console.log(note);
-    res.send(200);
-})
+    const note = await notes.find({ userName: userName });
+    // console.log(note[0].title);
+    var arr = Array();
+    for (const notee of note){
+        const tmp = [notee._id, notee.title];
+        arr.push(tmp);
+    }
+    res.json(arr);
+});
+
+app.get("/api/v1/getNote/:noteId", auth, async (req, res) =>{
+    // console.log(req.params.noteId);
+    const noteId = req.params.noteId;
+    const note = await notes.find({ _id : noteId });
+    // console.log(note);
+    res.send(note).status(200);
+});
