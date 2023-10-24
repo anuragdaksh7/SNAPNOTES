@@ -9,7 +9,6 @@
 ## Features
 - Login/ Signup
 - Add new note
-- Edit old note
 - Delete note
 
 ## Installation Guide
