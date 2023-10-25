@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/SNAPNOTES/static/js/main.49dd3a9a.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/SNAPNOTES/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/SNAPNOTES/index.html",
+    "main.49dd3a9a.js.map": "/SNAPNOTES/static/js/main.49dd3a9a.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/SNAPNOTES/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.49dd3a9a.js"
+  ]
+}
