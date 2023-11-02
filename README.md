@@ -12,15 +12,22 @@
 - Delete note
 
 ## Installation Guide
-- git clone https://github.com/anuragdaksh7/SNAPNOTES.git
+
+```
+git clone https://github.com/anuragdaksh7/SNAPNOTES.git
+```
 ### for client
-- cd client
-- npm install
-- npm start
+``` 
+cd client 
+npm install
+npm start
+```
 ### for server
-- cd server
-- npm install
-- npm run dev/ node app.js
+```
+cd server
+npm install
+npm run dev/ node app.js
+```
 ### Environment Variables
 - #### Frontend
 - - REACT_APP_BASE_URL = "http://localhost:5000/"
@@ -28,3 +35,10 @@
 - - PORT = 5000
 - - API_KEY = "mongodb connection string"
 - - SECRET_KEY = "your secret key for JWT"
+
+## Running using Docker
+- add all enviroment variables
+
+```
+docker compose up
+```

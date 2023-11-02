@@ -8,6 +8,7 @@ mongoose.connect(URL, {
     useUnifiedTopology:true
 }).then(() => {
     console.log("connection succsessfull");
+    // console.log(URL);
 }).catch((e) => {
     console.log(e);
 });
