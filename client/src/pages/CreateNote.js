@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const NoteConstruct = () => {
     const navigate = useNavigate();
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const BASE_URL = "https://snapnotes-fddw.onrender.com/";
     const [title, setTitle] = useState("");
     const [note, setNote] = useState("");
     const [img, setImg] = useState("");

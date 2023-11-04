@@ -6,7 +6,7 @@ import { Note } from "../component/NoteCard";
 
 
 export const Home = () => {
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const BASE_URL = "https://snapnotes-fddw.onrender.com/";
     const navigate = useNavigate()
 
     const [userName, setUserName] = useState("userName");

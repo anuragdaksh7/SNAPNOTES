@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
 
-const BASE = process.env.REACT_APP_BASE_URL;
+const BASE = "https://snapnotes-fddw.onrender.com/";
 
 export const SignUp = () => {
     const navigate = useNavigate();
