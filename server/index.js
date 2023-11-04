@@ -17,7 +17,7 @@ function hash(string) {
 
 
 const corsOptions = {
-    origin: ["http://localhost:3000","https://snapnotes-nu.vercel.app","https://snapnotes-gpuiiuza4-anuragdaksh7.vercel.app"],
+    origin: ["*"],
     credentials: true, // Allow cookies
 };
 
