@@ -1,6 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const URL = process.env.API_KEY;
+console.log(URL);
 // console.log(URL)
 mongoose.set('strictQuery', false);
 mongoose.connect(URL, { 
@@ -8,7 +9,7 @@ mongoose.connect(URL, {
     useUnifiedTopology:true
 }).then(() => {
     console.log("connection succsessfull");
-    // console.log(URL);
+    console.log(URL);
 }).catch((e) => {
     console.log(e);
 });
