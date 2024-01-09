@@ -1,8 +1,11 @@
 "use client"
 import axios from "axios";
+import { useRouter } from 'next/navigation'
 import { useState } from "react"
 
 export default function CreatePost(props) {
+    const router = useRouter()
+
     const [title,setTitle] = useState("");
     const [content,setContent] = useState("");
     const handleSubmit = async (e) => {
@@ -12,10 +15,12 @@ export default function CreatePost(props) {
             content: content,
             email: props.email
         }
-        console.log(data)
+        // console.log(data)
         const response = await axios.post("/api/upload",data);
         const d = response.data;
-        console.log(d);
+        // console.log(d);
+        router.push('/home')
+
     }
     return (
         <div className="flex justify-center items-center mt-28">

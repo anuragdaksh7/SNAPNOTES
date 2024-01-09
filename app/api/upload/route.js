@@ -1,8 +1,10 @@
 import { Register, Note } from "@/models/user.model";
 
+
+
 export async function POST(request) {
     const data = await request.json();
-    console.log(data);
+    // console.log(data);
     const title = data.title;
     const content = data.content;
     const email = data.email;
@@ -26,7 +28,3 @@ export async function POST(request) {
     return Response.json({"success": true})
 }
 
-export async function GET(request) {
-    console.log(request);
-    return Response.json({"success": true})
-}

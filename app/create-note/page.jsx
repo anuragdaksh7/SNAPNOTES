@@ -1,7 +1,6 @@
 import HeadComp from "@/components/HeadComp";
 import CreatePost from "@/components/forms/CreatePost";
 import { currentUser } from "@clerk/nextjs";
-import { Redirect } from "next";
 
 export default async function Page() {
     const user = await currentUser();

@@ -1,10 +1,11 @@
 import HeadComp from "@/components/HeadComp";
+import Notes from "@/components/Notes";
 import { currentUser } from '@clerk/nextjs';
 import Link from "next/link";
 
 export default async function home() {
     const user = await currentUser();
-    console.log(user.emailAddresses[0].emailAddress);
+    // console.log(user.emailAddresses[0].emailAddress);
     return (
         <div>
             <HeadComp />
@@ -18,6 +19,7 @@ export default async function home() {
                     className=" bg-blue-500 px-6 py-4 rounded-lg text-xl font-bold text-gray-100 select-none"
                 >Create Note</Link>
             </div>
+            <Notes email = {user.emailAddresses[0].emailAddress}/>
         </div>
     )
 }
