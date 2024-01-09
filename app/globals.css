@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-image: url("/assets/images/fmbete5kvoy31.jpg");
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+}
