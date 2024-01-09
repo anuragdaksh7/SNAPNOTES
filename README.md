@@ -1,46 +1,7 @@
-# SNAPNOTES
-![image](https://github.com/anuragdaksh7/SNAPNOTES/assets/84393491/5e5ca47d-db64-407c-ae02-95840ba8bace)
-![image](https://github.com/anuragdaksh7/SNAPNOTES/assets/84393491/a109daa5-b209-43ed-96da-b124e29f1358)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= 
+CLERK_SECRET_KEY= 
 
-### A note taking app which makes it a lot easier and quicker to take quick notes from your favorite lesson or some other tutorials.
-
-## Tech Stack
-- MERN
-- JWT for authentication
-
-## Features
-- Login/ Signup
-- Add new note
-- Delete note
-
-## Installation Guide
-
-```
-git clone https://github.com/anuragdaksh7/SNAPNOTES.git
-```
-### for client
-``` 
-cd client 
-npm install
-npm start
-```
-### for server
-```
-cd server
-npm install
-npm run dev/ node app.js
-```
-### Environment Variables
-- #### Frontend
-- - REACT_APP_BASE_URL = "http://localhost:5000/"
-- #### Backend
-- - PORT = 5000
-- - API_KEY = "mongodb connection string"
-- - SECRET_KEY = "your secret key for JWT"
-
-## Running using Docker
-- add all enviroment variables
-
-```
-docker compose up
-```
+NEXT_PUBLIC_CLERK_SIGN_IN_URL = /sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL = /sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL = /home
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL = /home
