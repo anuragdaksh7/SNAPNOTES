@@ -28,7 +28,7 @@ export default async function Home() {
             <div>
                 <div className="flex justify-center">
                     <div className="mx-2 sm:mx-0 w-full sm:w-2/3 backdrop-blur-md bg-gradient-to-b from-[#00000011] to-[#ffffff11] p-8 mt-12 rounded-xl text-black hover:duration-300 duration-300 hover:scale-105 shadow-xl">
-                        <div className="border-b-2 pb-4 border-white">
+                        <div className="border-b-2 pb-4 border-white montserrat-200">
                             <h1 className="text-gray-800 font-bold text-xl sm:text-4xl text-center mb-4">Effortless Note-Taking, Simplified:</h1>
                             <h1 className="text-gray-800 text-lg sm:text-2xl text-center">Snap Notes - Your Ultimate Digital Notebook</h1>
                         </div>
