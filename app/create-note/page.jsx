@@ -7,7 +7,6 @@ export default async function Page() {
     if(!user ) return null;
     return (
         <div>
-            <HeadComp />
             <CreatePost email={user.emailAddresses[0].emailAddress} />
         </div>
     )

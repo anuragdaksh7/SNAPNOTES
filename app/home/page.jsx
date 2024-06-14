@@ -8,7 +8,6 @@ export default async function home() {
     // console.log(user.emailAddresses[0].emailAddress);
     return (
         <div>
-            <HeadComp />
             {/* <p>Hi {user.firstName}</p> */}
             <div className="flex items-center justify-between px-12 mt-8">
                 <p

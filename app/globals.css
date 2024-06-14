@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+  background: fixed;
   background-image: url("/assets/images/fmbete5kvoy31.jpg");
   height: 100vh;
   background-position: center;
